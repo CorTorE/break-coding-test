@@ -31,7 +31,7 @@ public class P15649 {
             nums[i - 1] = i;
         }
 
-        dfs(N, 0, 0, new Stack<>());
+        dfs(N, 0, new Stack<>());
 
         while (!ansQueue.isEmpty()) {
             bw.write(ansQueue.poll() + "\n");
@@ -41,7 +41,7 @@ public class P15649 {
         br.close();
     }
 
-    static void dfs(int N, int depth, int startIndex, Stack<Integer> ans) {
+    static void dfs(int N, int depth, Stack<Integer> ans) {
         if (depth >= M) {
             StringBuilder sb = new StringBuilder();
             for (int num : ans) {
@@ -56,7 +56,7 @@ public class P15649 {
                 continue;
             visited[nums[i]] = true;
             ans.push(nums[i]);
-            dfs(N, depth + 1, i + 1, ans);
+            dfs(N, depth + 1, ans);
             visited[nums[i]] = false;
             ans.pop();
         }
