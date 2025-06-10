@@ -17,8 +17,10 @@ var canFinish = function (numCourses, prerequisites) {
     if (indegree[i] === 0) queue.push(i);
   }
 
+  let completed = 0;
   while (queue.length) {
     const curr = queue.pop();
+    completed++;
 
     for (const next of graph[curr]) {
       indegree[next]--;
@@ -29,6 +31,5 @@ var canFinish = function (numCourses, prerequisites) {
     }
   }
 
-  const isFinish = Math.max(...indegree) === 0;
-  return isFinish;
+  return numCourses === completed;
 };
